@@ -59,3 +59,26 @@ Finish time: 10pm  18/8/2021
 Actual time needed to complete: 5hours
 
 --------------------------------------------
+
+Name of feature: add a new book to the shelf
+
+Estimate of time needed to complete:15 minute
+
+Start time: 10pm   18/8/2021
+
+Finish time: 10:30pm  18/8/2021
+
+Actual time needed to complete: 30minute
+
+--------------------------------------------
+
+Name of feature: delete a book from the shelf
+
+Estimate of time needed to complete:2hours
+
+Start time: 10:30pm   18/8/2021
+
+Finish time: 1:00am  19/8/2021
+
+Actual time needed to complete: 2.5hours
+

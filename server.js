@@ -7,11 +7,11 @@ const jwksClient = require('jwks-rsa');
 require("dotenv").config();
 const PORT = process.env.PORT;
 
-const BookController = require("./controllers/Book.controller");
+const { BookController, createBookController, deleteBookController } = require("./controllers/Book.controller");
 const startingController = require("./controllers/Starting.controller");
 
 
-
+app.use(express.json());
 const seedUserData = require("./models/User.model");
 // const axios = require("axios");
 const cors = require("cors");
@@ -23,7 +23,8 @@ seedUserData();
 
 app.get("/", startingController);
 app.get("/books", BookController);
-
+app.post("/books", createBookController);
+app.delete("/books/:id", deleteBookController);
 const client = jwksClient({
   // this url comes from your app on the auth0 dashboard 
   jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
