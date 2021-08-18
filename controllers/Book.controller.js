@@ -1,19 +1,15 @@
-const UserModel = require("../models/User.model");
+"use strict";
+
+const userModel = require("../models/User.model");
 
 const BookController = (req, res) => {
-  const email = req.query.email;
-  UserModel.findOne({ email: email }, (error, user) => {
+  const { email } = req.query;
+  userModel.find({ email: email }, (error, user) => {
     if (error) {
-      res.send(error);
-    } else {
-      if (user === null) {
-        user = new UserModel({ email, books: [] });
-        user.save();
-      }
-      res.json(user);
+      res.send(error.message);
     }
+    res.json(user[0].books);
+
   });
 };
-
-
 module.exports = BookController;

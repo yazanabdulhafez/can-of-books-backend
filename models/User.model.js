@@ -1,26 +1,26 @@
 "use strict";
 
 const mongoose = require("mongoose");
-const BookSchema = require('./Book.model');
+const bookSchema = require("./Book.model");
 
-const UserScheme = new mongoose.Schema({
+const userScheme = new mongoose.Schema({
   email: { type: String },
-  books: [BookSchema]
+  books: [bookSchema],
 });
 
-const UserModel = mongoose.model("user", UserScheme);
+const userModel = mongoose.model("user", userScheme);
 
 const seedUserData = () => {
-  const newUser = new UserModel({
+  const yazan = new userModel({
     email: "fso361435@gmail.com",
     books: [
       { name: "a smarter way to learn javascript", description: "programming", status: "New" },
       { name: "full stack react", description: "programming", status: "Used" },
       { name: "learning web design", description: "programming", status: "New" },
-    ],
+    ]
   });
-  console.log(newUser);
-  newUser.save();
+  console.log(yazan);
+  yazan.save();
 };
-seedUserData();
-module.exports = UserModel;
+// seedUserData();
+module.exports = userModel;
