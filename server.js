@@ -1,21 +1,28 @@
-'use strict';
-
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken');
 const jwksClient = require('jwks-rsa');
-const StartingController = require('./controllers/Starting.controler');
-const BookController = require('./controllers/Book.controller')
-const app = express();
-app.use(cors());
-const mongoose = require("mongoose");
+
+require("dotenv").config();
+const PORT = process.env.PORT;
+
+const BookController = require("./controllers/Book.controller");
+const startingController = require("./controllers/Starting.controller");
+
+
 
 const seedUserData = require("./models/User.model");
-mongoose.connect("mongodb://localhost:8000/BestBooks", { useNewUrlParser: true, useUnifiedTopology: true });
+// const axios = require("axios");
+const cors = require("cors");
 
+app.use(cors());
 
-const PORT = process.env.PORT;
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+seedUserData();
+
+app.get("/", startingController);
+app.get("/books", BookController);
 
 const client = jwksClient({
   // this url comes from your app on the auth0 dashboard 
@@ -29,10 +36,6 @@ const getKey = (header, callback) => {
     callback(null, signingKey);
   });
 }
-
-app.get('/', StartingController);
-
-app.get('/Books', BookController);
 
 app.get('/test', (req, res) => {
 
@@ -50,5 +53,4 @@ app.get('/test', (req, res) => {
     res.send(user)
   })
 })
-
-app.listen(PORT, () => console.log(`listening on Port ${PORT}`));
+app.listen(PORT, () => console.log(`listening on port ${PORT}`));
