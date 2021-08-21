@@ -16,7 +16,7 @@ const startingController = require("./controllers/Starting.controller");
 const seedUserData = require("./models/User.model");
 
 
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://Yazan:hghv]k12345@cluster0.pzuvo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 seedUserData();
 
 app.get("/", startingController);

@@ -22,5 +22,5 @@ const seedUserData = () => {
   console.log(yazan);
   yazan.save();
 };
-// seedUserData();
+seedUserData();
 module.exports = userModel;
