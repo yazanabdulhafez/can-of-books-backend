@@ -15,8 +15,8 @@ const { BookController, createBookController, deleteBookController, updateBookCo
 const startingController = require("./controllers/Starting.controller");
 const seedUserData = require("./models/User.model");
 
-
-mongoose.connect('mongodb+srv://Yazan:hghv]k12345@cluster0.pzuvo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+const mongoUrl = 'mongodb+srv://Yazan:hghv]k12345@cluster0.pzuvo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true }, () => console.log('connected to DB !!'));
 seedUserData();
 
 app.get("/", startingController);
